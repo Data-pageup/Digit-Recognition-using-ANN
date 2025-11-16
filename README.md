@@ -1,54 +1,52 @@
-# Bank Marketing ML Project
+# Handwritten Digit Recognition
 
-## 📌 Problem Statement
-Banks often run marketing campaigns to encourage customers to subscribe to term deposits.  
-However, the dataset is highly imbalanced — only about **11%** of customers actually subscribe.  
+A compact deep learning project that classifies handwritten digits (0–9) from 28×28 grayscale images. This repository implements a simple neural network pipeline including data loading, preprocessing, model training, and evaluation.
 
-**Goal:**  
-Build and compare multiple machine learning models that can predict whether a customer will subscribe, while handling class imbalance using **SMOTE**.
+## Overview
 
----
+This project demonstrates a complete workflow for a multi-class image classification task:
 
-## 📊 Dataset
-- **Source:** UCI Machine Learning Repository (Bank Marketing Dataset)  
-- **Features:** Customer demographics, financial details, contact methods, previous campaign outcomes  
-- **Target (`y`):** Subscription to term deposit (Yes = 1, No = 0)  
+- Load a CSV-format digit dataset (labels + 784 pixel columns)
+- Clean and normalize pixel values
+- Reshape images to the required input shape
+- Convert labels to one-hot format
+- Train a small feedforward neural network
+- Evaluate model performance on a held-out validation set
 
----
+## Dataset
 
-## ⚙️ Methodology
-1. Data preprocessing & categorical encoding  
-2. Class imbalance handling using **SMOTE**  
-3. Model training on 4 classifiers:  
-   - Logistic Regression  
-   - Random Forest  
-   - XGBoost  
-   - Neural Network (MLPClassifier)  
-4. Evaluation using metrics: **Accuracy, Precision, Recall, F1-score, ROC-AUC**
+- **Format:** CSV with 785 columns (first column = label, remaining 784 = pixel intensities)
+- **Samples:** 42,000
+- **Image Size:** 28 × 28 pixels (grayscale)
+- **Labels:** Digits 0–9
 
----
+## Preprocessing
 
-## 📈 Results
+- Ensure pixel columns are numeric and replace missing values if any
+- Normalize pixel values to the range [0, 1]
+- Reshape flat pixel vectors into 28×28×1 images
+- One-hot encode labels for multi-class classification
+- Split data into training and validation sets
 
-| Model               | Accuracy | Precision (class=1) | Recall (class=1) | F1-score (class=1) | ROC-AUC |
-|----------------------|----------|----------------------|------------------|---------------------|---------|
-| Logistic Regression  | 0.888    | 0.502                | 0.670            | 0.574               | 0.907   |
-| Random Forest        | 0.915    | 0.619                | 0.637            | 0.628               | 0.948   |
-| XGBoost              | 0.914    | 0.611                | 0.653            | 0.631               | 0.945   |
-| Neural Net (MLP)     | 0.899    | 0.693                | 0.192            | 0.300               | 0.916   |
+## Model
 
----
+A simple neural network with:
 
-## ✅ Conclusion
-- **Random Forest and XGBoost** performed best overall, achieving **ROC-AUC ≈ 0.95**.  
-- Logistic Regression is a strong interpretable baseline.  
-- Neural Network struggled with recall, indicating it missed many positive cases.  
-- **SMOTE successfully balanced the dataset** and improved recall across most models.  
+- Input flattening stage
+- Two fully connected hidden layers
+- Softmax output layer for 10 classes
+- Optimizer: Adam (default)
+- Loss: Categorical cross-entropy
 
----
+## Training
 
-## 🚀 How to Run
-1. Clone this repo  
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+1. Prepare the dataset in the repository (CSV file named appropriately)
+2. Run the training routine to fit the model on the training split and validate on the held-out set
+3. Monitor training and validation accuracy to check learning progress
+
+## Results
+
+- **Validation Accuracy:** ~97%
+- **Training Accuracy:** ~99%
+- Indicates strong fitting with good generalization
+- Plot training and validation accuracy/loss curves to inspect for overfitting
