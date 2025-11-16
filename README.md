@@ -50,4 +50,6 @@ A simple neural network with:
 - **Validation Accuracy:** ~97%
 - **Training Accuracy:** ~99%
 - Indicates strong fitting with good generalization
-- Plot training and validation accuracy/loss curves to inspect for overfitting
+
+  <img width="592" height="342" alt="image" src="https://github.com/user-attachments/assets/2895b4aa-5d2a-4e5c-8c87-cd1be654c03f" />
+
