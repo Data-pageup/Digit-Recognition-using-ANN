@@ -37,6 +37,7 @@ A simple neural network with:
 - Softmax output layer for 10 classes
 - Optimizer: Adam (default)
 - Loss: Categorical cross-entropy
+<img width="462" height="206" alt="image" src="https://github.com/user-attachments/assets/c1a6177d-5bd0-4d42-abc5-e22b39d61264" />
 
 ## Training
 
